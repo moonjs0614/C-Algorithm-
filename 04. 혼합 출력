@@ -1,0 +1,10 @@
+#include <stdio.h>
+
+int main(){
+  int a = 5;
+  int b = -1;
+  int c = 2;
+  
+  printf("a, b, c 값은 각각 a는 %d, b는 %d, c는 %d 입니다\n", a, b, c);
+  
+  return 0;}
