@@ -1,0 +1,14 @@
+#include <stdio.h>
+
+int main(){
+  
+  int a;
+  int b;
+  
+  scanf("%d", &a);
+  scanf("%d", &b);
+  
+  if (a > b) printf("a가b보다크다");
+  else if (a < b) printf("b가a보다같거나크다");
+  
+  return 0;}
