@@ -1,0 +1,21 @@
+//숫자 3개를 입력 받으세요.
+//세 수의 합이 세 수의 곱보다 같거나 크다면 "행운의 수" 출력
+//아니면 "소소한 수" 출력
+
+
+#include <stdio.h>
+
+int main(){
+  
+  int a;
+  int b;
+  int c;
+  
+  scanf("%d", &a);
+  scanf("%d", &b);
+  scanf("%d", &c);
+  
+  if (a+b+c >= a*b*c) printf("행운의 수");
+  else printf("소소한 수");
+  
+  return 0;}
