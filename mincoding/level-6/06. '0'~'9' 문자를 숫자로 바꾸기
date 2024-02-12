@@ -1,0 +1,15 @@
+#include <iostream>
+using namespace std;
+
+int main(){
+  
+  char x;
+  cin >> x;
+  
+  if (x>='0' and x<='9')
+  {
+    int y = x - '0';
+    cout << y + 5;
+  }
+  
+  return 0;}
