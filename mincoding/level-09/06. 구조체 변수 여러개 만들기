@@ -1,0 +1,39 @@
+//Person이라는 구조체를 정의 해 주세요.
+//이 구조체는 int age, int height 이렇게 두 변수값을 가지고 있습니다.
+//그리고 Person 구조체 변수 a, b를 선언 해 주세요
+//Input함수에서
+//숫자 4개를 순서대로, 구조체변수 a.age, a.height, b.age, b.height에다가입력 받아주세요.
+//Output함수에서
+//구조체변수 a와 b가 가지고 있는 age, height의 평균을 구해서 출력 해세요.
+
+#include <iostream>
+
+struct Person
+{
+  int age;
+  int height;
+};
+
+Person a;
+Person b;
+
+int Input()
+{
+  std::cin >> a.age >> a.height >> b.age >> b.height;
+  return a.age, a.height, b.age, b.height;
+}
+
+void Output()
+{
+  int age = (a.age + b.age) / 2;
+  int height = (a.height + b.height) / 2;
+  
+  std::cout << age << " " << height;
+}
+
+int main(){
+  
+  Input();
+  Output();
+  
+  return 0;}
