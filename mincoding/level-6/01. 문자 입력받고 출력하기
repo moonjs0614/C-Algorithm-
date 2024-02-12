@@ -1,0 +1,25 @@
+//INPUT 함수에서 문자 2개를 입력받으세요
+//OUTPUT 함수에서 입력 받은 문자 2개를 출력하세요.
+//main함수에서는 INPUT 함수와 OUTPUT함수를 호출 하시면 됩니다.
+
+#include <iostream>
+using namespace std;
+
+char a, b;
+
+void INPUT()
+{
+  cin >> a >> b;
+}
+
+void OUTPUT()
+{
+  cout << a << " " << b;
+}
+
+int main(){
+  
+  INPUT();
+  OUTPUT();
+  
+  return 0;}
