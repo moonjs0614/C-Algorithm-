@@ -1,0 +1,16 @@
+#include <iostream>
+using namespace std;
+
+int arr[6] = {3, 4, 1, 6, 7, 5};
+
+int main(){
+  
+  int k = 0;
+  
+  while (k < 6)
+  {
+    cout << arr[k] << " ";
+    k++;
+  }
+  
+  return 0;}
