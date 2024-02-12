@@ -1,0 +1,17 @@
+#include <stdio.h>
+
+int main(){
+  
+  int a;
+  scanf("%d", &a);
+  
+  if (a == 5 || a == 10)
+  {
+    printf("만세");
+  }
+  else
+  {
+    printf("재도전");
+  }
+  
+  return 0;}
