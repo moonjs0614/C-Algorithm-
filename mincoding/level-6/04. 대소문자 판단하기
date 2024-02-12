@@ -1,0 +1,18 @@
+#include <iostream>
+using namespace std;
+
+int main(){
+  
+  char x;
+  cin >> x;
+  
+  if (x>=65 and x<=90)
+  {
+    cout << "대문자입니다";
+  }
+  else
+  {
+    cout << "소문자입니다";
+  }
+  
+  return 0;}
