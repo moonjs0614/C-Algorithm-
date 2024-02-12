@@ -1,0 +1,40 @@
+//배열 5칸에 5명의 점수를 입력 받아주세요
+//만약 70점 이상(>=)이면 "PASS" 출력
+//만약 50점 이상(>=)이면 "RETEST" 출력
+//50점 아래라면 "FAIL" 출력을 해야 합니다.
+//5명의 채점결과를 출력해주는 프로그램을 작성 해 주세요
+
+#include <iostream>
+using namespace std;
+
+char* Func(int x)
+{
+  char* k;
+  
+  if (x >= 70)
+  {
+    k = "PASS";
+  }
+  else if (x >= 50)
+  {
+    k = "RETEST";
+  }
+  else
+  {
+    k = "FAIL";
+  }
+  
+  return k;
+}
+
+int main(){
+  
+  int arr[5];
+  cin >> arr[0] >> arr[1] >> arr[2] >> arr[3] >> arr[4];
+  
+  for (int i = 0; i < 5; i++)
+  {
+    cout << i+1 << "번사람은" << arr[i] << "점" << Func(arr[i]) << endl;
+  }
+  
+  return 0;}
