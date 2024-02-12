@@ -1,0 +1,19 @@
+//숫자 한 개 를 입력받으세요
+//입력받은 숫자 부터 Count Down이 되는 과정을 출력 해 주세요.
+//그리고 마지막에는 "발사"를 출력해주시면 됩니다.
+
+#include <stdio.h>
+
+int main(){
+  
+  int a;
+  scanf("%d", &a);
+  
+  for (int i = a; i >= 0; i--)
+  {
+    printf("%d\n", i);
+  }
+  
+  printf("발사");
+  
+  return 0;}
