@@ -1,0 +1,43 @@
+//전역변수 flag, a, b, c 이렇게 4개의 char변수를 만들어주세요.
+//input함수에서문자 3개를 a, b, c 변수에 입력 받으세요.
+//process함수에서는이렇게 처리 해 주세요
+//- 만약 입력 받은 문자가 'A' 'B' 'C' 라면 전역변수 flag = 1 넣기
+//output함수에서는이렇게 처리 해 주세요
+//- 만약 flag == 1 이라면, "ABC를찾았다" 출력
+//- 그렇지 않으면 "못찾았다" 출력
+
+#include <iostream>
+using namespace std;
+
+char flag, a, b, c;
+
+int INPUT()
+{
+  cin >> a >> b >> c;
+  
+  if (a == 'A' and b == 'B' and c == 'C')
+  {
+    flag = '1';
+  }
+  
+  return flag;
+}
+
+void OUTPUT()
+{
+  if (flag == '1')
+  {
+    cout << "ABC를찾았다";
+  }
+  else
+  {
+    cout << "못찾았다";
+  }
+}
+
+int main(){
+  
+  INPUT();
+  OUTPUT();
+  
+  return 0;}
