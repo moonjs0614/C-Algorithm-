@@ -1,0 +1,39 @@
+//5개 문자를 배열에 입력 받아주세요.
+//for문으로 배열을 탐색을 하며
+//한 글자씩 checkChar함수로 보내주세요
+
+//checkChar( ) 함수는 한 글자를 받아서
+//대문자인지, 소문자인지 구분해 주는 함수입니다.
+//전달 받은 글자가 대문자라면 "대"
+//전달 받은 글자가 소문자라면 "소"
+//를 출력하면 됩니다.
+
+#include <iostream>
+
+char arr[5];
+
+void checkChar()
+{
+  for (int i = 0; i < 5; i++)
+  {
+    if (arr[i] >= 'A' and arr[i] <= 'Z')
+    {
+      std::cout << "대";
+    }
+    else if (arr[i] >= 'a' and arr[i] <= 'z')
+    {
+      std::cout << "소";
+    }
+  }
+}
+
+int main(){
+  
+  for (int i = 0; i < 5; i++)
+  {
+    std::cin >> arr[i];
+  }
+  
+  checkChar();
+  
+  return 0;}
