@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+void KFC()
+{
+  printf("KFC입니다");
+}
+
+void MC()
+{
+  printf("MC입니다");
+}
+         
+
+int main(){
+  int a;
+  scanf("%d", &a);
+  
+  if (a == 1)
+  {
+    KFC();
+  }
+  else if (a == 2)
+  {
+    MC();
+  }
+  
+  return 0;}
