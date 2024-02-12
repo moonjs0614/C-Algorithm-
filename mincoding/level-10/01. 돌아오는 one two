@@ -1,0 +1,28 @@
+//[one 함수] 숫자 하나 입력받고, 입력 받은 숫자를 return 하는 함수입니다.
+//[two 함수] 문자 하나 입력받고, 입력 받은 문자를 return 하는 함수입니다.
+
+//one에서 받은 숫자와 two에서 받은 문자를 각각 출력 해 주세요.
+//유의사항 : main에서 입력받지 마세요.
+
+#include <iostream>
+
+int One()
+{
+  int a;
+  std::cin >> a;
+  return a;
+}
+
+char Two()
+{
+  char b;
+  std::cin >> b;
+  return b;
+}
+
+int main()
+{
+  std::cout << One();
+  std::cout << Two();;
+  
+  return 0;}
