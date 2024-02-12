@@ -1,0 +1,16 @@
+//char변수(캐릭터 변수)에 문자 3개를 입력받아주세요.
+//그리고 입력받은 문자들의 아스키코드 정수값을 각각 출력해주세요.
+
+#include <iostream>
+using namespace std;
+
+int main(){
+  
+  char a, b, c;
+  cin >> a >> b >> c;
+  
+  cout << (int)(a) << endl;
+  cout << (int)(b) << endl;
+  cout << (int)(c) << endl;
+  
+  return 0;}
