@@ -1,0 +1,43 @@
+//학생들이 6x2 배열에 두명씩 짝을 지어서 6줄로 앉아있습니다. (학생의 상태를 입력 받으면 됩니다)
+//선생님은 짝꿍 끼리 숫자를 비교했을 때, 숫자가 더 큰 사람이 왼쪽에 앉히려고 합니다.
+//1. 선생님의 지시에 따라 SWAP을 한 후배열을 출력해 주세요.
+//2. 그리고자리가 몇번 교환되었는지 출력해 주세요.
+
+#include <iostream>
+
+int arr[6][2];
+
+int main(){
+  
+  for (int i = 0; i < 6; i++)
+  {
+    for (int j = 0; j < 2; j++)
+    {
+      std::cin >> arr[i][j];
+    }
+  }
+  int count = 0;
+  
+  for (int i = 0; i < 6; i++)
+  {
+    if (arr[i][0] < arr[i][1])
+    {
+      int temp = arr[i][0];
+      arr[i][0] = arr[i][1];
+      arr[i][1] = temp;
+      count++;
+    }
+  }
+  
+  for (int i = 0; i < 6; i++)
+  {
+    for (int j = 0; j < 2; j++)
+    {
+      std::cout << arr[i][j] << " ";
+    }
+    std::cout << std::endl;
+  }
+  std::cout << count << "명";
+  
+  
+  return 0;}
