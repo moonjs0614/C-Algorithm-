@@ -1,0 +1,22 @@
+//숫자 1개 입력받고,
+//입력받은 숫자 index에 해당하는 값이 2보다 크면(>) "우와" 를
+//아니면 "ㅠㅠ" 를 출력해 주세요.
+
+#include <stdio.h>
+
+int main(){
+  
+  int arr[4] = {3, 1, 2, 5};
+  int a;
+  scanf("%d", &a);
+  
+  if (arr[a] > 2)
+  {
+    printf("우와");
+  }
+  else
+  {
+    printf("ㅠㅠ");
+  }
+  
+  return 0;}
