@@ -1,0 +1,42 @@
+//2차배열 2 x 3 사이즈로 선언 해주세요
+//input함수에서 각 배열에 숫자를 입력받아주세요.
+//process함수에서 각 배열의 요소들의 합을 구해주세요 (sum구하기)
+//output함수에서 합을 출력 해 주세요
+
+#include <iostream>
+using namespace std;
+
+int arr[2][3];
+
+void Input()
+{
+  for (int i = 0; i < 2; i++)
+  {
+    for (int j = 0; j < 3; j++)
+    {
+      cin >> arr[i][j];
+    }
+  }
+}
+
+int sum = 0;
+
+void Output()
+{
+  for (int i = 0; i < 2; i++)
+  {
+    for (int j = 0; j < 3; j++)
+    {
+      sum += arr[i][j];
+    }
+  }
+  
+  cout << sum;
+}
+
+int main(){
+  
+  Input();
+  Output();
+  
+  return 0;}
