@@ -1,0 +1,56 @@
+//커피가격을 입력 받아주세요 (숫자 하나를 입력받아주세요)
+//그 커피가 3500 <= input <= 5000 이라면 -> starBox함수를 호출 해 주세요
+//그 커피가 2500 <= input < 3500 이라면 -> macDoll함수를 호출 해 주세요
+//위 조건이 모두 아니라면 -> copyBean함수를 호출 해 주세요
+
+//각 함수에 대한 설명
+//- starBox() :1 부터 20 사이의 홀수를 출력하는 함수 (for문 이용)
+//- macDoll(): H ~ A까지 거꾸로 출력하는 함수 (for문 이용)
+//- copyBean(): -5 ~ 5까지 숫자를 출력하는 함수 (for문 이용)
+
+#include <iostream>
+using namespace std;
+
+void starBox()
+{
+  for (int i = 1; i < 20; i += 2)
+  {
+    cout << i << " ";
+  }
+}
+
+void macDoll()
+{
+  for (int i = 0; i < 8; i++)
+  {
+    cout << char('H' - i) << " ";
+  }
+}
+
+void copyBean()
+{
+  for (int i = -5; i < 6; i++)
+  {
+    cout << i << " ";
+  }
+}
+
+int main(){
+  
+  int a;
+  cin >> a;
+  
+  if (a >= 3500 and a <= 5000)
+  {
+    starBox();
+  }
+  else if (a>= 2500 and a <= 3500)
+  {
+    macDoll();
+  }
+  else
+  {
+    copyBean();
+  }
+  
+  return 0;}
