@@ -1,0 +1,16 @@
+//문자 1개를 입력 받으세요
+//그리고 입력받은 문자를 3회 출력하세요
+
+#include <stdio.h>
+
+int main(){
+  
+  char a;
+  scanf("%c", &a);
+  
+  for (int i = 0; i < 3; i++)
+  {
+    printf("%c", a);
+  }
+  
+  return 0;}
