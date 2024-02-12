@@ -1,0 +1,34 @@
+#include <iostream>
+
+char arr[3][3];
+int k = 0;
+
+int main(){
+  
+  for (int i = 0; i < 3; i++)
+  {
+    for (int j = 0; j < 3; j++)
+    {
+    arr[i][j] = 'A' + k;
+    k++;
+    }
+  }
+  
+  int y1, x1, y2, x2;
+  std::cin >> y1 >> x1;
+  std::cin >> y2 >> x2;
+  
+  char temp = arr[y1][x1];
+  arr[y1][x1] = arr[y2][x2];
+  arr[y2][x2] = temp;
+  
+  for (int t = 0; t < 3; t++)
+  {
+    for (int j = 0; j < 3; j++)
+    {
+      std::cout << arr[t][j];
+    }
+    std::cout << std::endl;
+  }
+  
+  return 0;}
