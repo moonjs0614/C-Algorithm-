@@ -1,0 +1,35 @@
+//먼저 두 함수를 정의 해 주세요.
+//KFC함수 : 숫자 1개를 입력받는 함수
+//BBQ함수 : 입력받은 숫자가 5보다 크면 "만세", 그렇지않으면 "다시" 를 출력하는 함수
+//main함수에서 KFC함수와 BBQ함수를 각각 호출 하는 프로그램을 작성 해 주세요.
+
+#include <iostream>
+using namespace std;
+
+int KFC()
+{
+  int a;
+  cin >> a;
+
+  return a;
+}
+
+void BBQ()
+{
+  int b = KFC();
+  
+  if (b > 5)
+  {
+    cout << "만세";
+  }
+  else
+  {
+    cout << "다시";
+  }
+}
+
+int main(){
+  
+  BBQ();
+  
+  return 0;}
