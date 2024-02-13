@@ -1,0 +1,15 @@
+#include <iostream>
+using namespace std;
+
+char vect[10];
+
+int main(){
+  
+  cin >> vect;
+  
+  for (int i = 0; i < 5; i++)
+  {
+    cout << vect << endl;
+  }
+  
+  return 0;}
