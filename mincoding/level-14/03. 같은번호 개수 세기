@@ -1,0 +1,34 @@
+//4칸짜리 1차원 배열에 숫자 4개를 입력받아주세요
+//입력받은 각 숫자가 vect 배열 안에 몇개 존재하는지 출력 해 주세요
+
+#include <iostream>
+using namespace std;
+
+int main(){
+  
+  int vect[7] = {3, 5, 1, 1, 2, 3, 2};
+  int arr[4];
+  
+  for (int i = 0; i < 4; i++)
+  {
+    cin >> arr[i];
+  }
+  
+  int k = 0;
+  
+  while (k < 4)
+  {
+    int count = 0;
+    
+    for (int i = 0; i < 7; i++)
+    {
+      if (vect[i] == arr[k])
+      {
+        count++;
+      }
+    }
+    cout << arr[k] << "=" << count << "개" << endl;
+    k++;
+  }
+  
+  return 0;}
