@@ -1,0 +1,134 @@
+//시골쥐는 먼 길을 여행하여 드디어 도시쥐의 집에 도착하였습니다.
+//친구를 만나기 바로 전 그 순간! 시골쥐는 여태까지 보지 못했던 최고급 치즈 부스러기를 발견했습니다.
+//이에 이성을 잃어버린 시골쥐는 먼저 치즈를 먹고, 친구를 만나러 가려고 합니다.
+//시골 쥐는 상,하, 좌,우의 방향으로 움직일 수 있습니다. 그리고 한 칸을 이동할때 마다 "1의 시간" 이 걸립니다. 치즈를 먹는데에는 시간이 걸리지 않고, 도시 쥐는 움직이지 않는다고 가정합니다.
+//도시 쥐의 집의 크기, 그리고 집의 정보가 주어졌을 때, 시골쥐가 치즈를 먹고 도시 쥐에게 가기까지의 최소 이동 시간을 출력하는 프로그램을 작성하시오.
+
+#include <iostream>
+#include <vector>
+#include <queue>
+#include <string>
+using namespace std;
+
+string map1[20][20];
+string map2[20][20];
+int dy[4] = { -1, 1, 0, 0 };
+int dx[4] = { 0, 0, -1, 1 };
+int N, M;
+int c, e;
+
+struct Point
+{
+	int y;
+	int x;
+};
+
+queue<Point> q1;
+queue<Point> q2;
+
+void bfs1(Point st)
+{
+	q1.push(st);
+	map1[st.y][st.x] = "1";
+
+	while (!q1.empty())
+	{
+		Point now = q1.front();
+		q1.pop();
+
+		for (int i = 0; i < 4; i++)
+		{
+			Point next;
+			next.y = now.y + dy[i];
+			next.x = now.x + dx[i];
+
+			if (next.y < 0 or next.x < 0 or next.y >= N or next.x >= M) continue;
+			if (map1[next.y][next.x] == "C")
+			{
+				c = map1[now.y][now.x].length();
+				return;
+			}
+			if (map1[next.y][next.x] == ".")
+			{
+				map1[next.y][next.x] = map1[now.y][now.x] + '1';
+				q1.push(next);
+			}
+		}
+	}
+}
+
+void bfs2(Point st)
+{
+	q2.push(st);
+	map2[st.y][st.x] = "1";
+
+	while (!q2.empty())
+	{
+		Point now = q2.front();
+		q2.pop();
+
+
+		for (int i = 0; i < 4; i++)
+		{
+			Point next;
+			next.y = now.y + dy[i];
+			next.x = now.x + dx[i];
+
+			if (next.y < 0 or next.x < 0 or next.y >= N or next.x >= M) continue;
+			if (map2[next.y][next.x] == "D")
+			{
+				e = map2[now.y][now.x].length();
+				return;
+			}
+			if (map2[next.y][next.x] == ".")
+			{
+				map2[next.y][next.x] = map2[now.y][now.x] + "1";
+				q2.push(next);
+			}
+		}
+	}
+}
+
+int main() {
+
+	cin >> N >> M;
+
+	Point st, cheeze, en;
+
+	for (int i = 0; i < N; i++)
+	{
+		for (int j = 0; j < M; j++)
+		{
+			cin >> map1[i][j];
+			if (map1[i][j] == "." or map1[i][j] == "x") continue;
+			if (map1[i][j] == "S")
+			{
+				st.y = i;
+				st.x = j;
+			}
+			if (map1[i][j] == "C")
+			{
+				cheeze.y = i;
+				cheeze.x = j;
+			}
+			if (map1[i][j] == "D")
+			{
+				en.y = i;
+				en.x = j;
+			}
+		}
+	}
+
+	for (int i = 0; i < N; i++)
+	{
+		for (int j = 0; j < M; j++)
+		{
+			map2[i][j] = map1[i][j];
+		}
+	}
+
+	bfs1(st);
+	bfs2(cheeze);
+
+	cout << c + e;
+}
