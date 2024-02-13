@@ -1,0 +1,44 @@
+//화학물질 검사 장비는 특정 시간마다
+//검사결과를 남기는데, 이를 Log Message라고 합니다.
+//긴 Log Message에서"PASS"가 된 Message의 비율을 알아보려고 합니다.
+//"PASS"와 "FAIL" 개수를 구한 후, 검사장비의 PASS 율이 몇 %인지 계산하여 결과를 출력해 주세요.
+//예를 들어 PASS가 3개 / FAIL이 5개 존재한다면, 3 / 8 * 100 = 37.5 이므로, 정답은 37% 입니다.
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+string str;
+int pass;
+int fail;
+
+int main() {
+
+    cin >> str;
+    int len = str.length();
+
+    for (int i = 0; i < len; i++)
+    {
+        str[i] = tolower(str[i]);
+    }
+
+    for (int i = 0; i < len; i++)
+    {
+        if (str.find("pass") != string::npos)
+        {
+            pass++;
+            str.erase(str.find("pass"), 4);
+        }
+
+        if (str.find("fail") != string::npos)
+        {
+            fail++;
+            str.erase(str.find("fail"), 4);
+        }
+    }
+
+    double total = pass + fail;
+    double answer = (pass / total) * 100;
+
+    cout << (int)answer << "%";
+}
