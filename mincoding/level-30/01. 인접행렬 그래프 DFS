@@ -1,0 +1,39 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <iostream>
+#include <vector>
+#include <queue>
+using namespace std;
+
+int n;
+vector<int>alis[6];
+int visited[6];
+
+int arr[6][6] = {
+	{0, 0, 1, 1, 0, 1},
+	{0, 0, 0, 1, 1, 1},
+	{0, 0, 0, 0, 1, 1},
+	{0, 0, 0, 0, 0, 0},
+	{1, 0, 0, 0, 0, 1},
+	{0, 0, 0, 0, 0, 0}
+};
+
+void dfs(int now)
+{
+	cout << now << " ";
+	visited[now] = 1;
+
+	for (int i = 0; i < 6; i++)
+	{
+		if (arr[now][i] == 0)continue;
+		if (visited[i] == 1)continue;
+
+		dfs(i);
+	}
+}
+
+int main() {
+
+	cin >> n;
+
+	dfs(n);
+}
