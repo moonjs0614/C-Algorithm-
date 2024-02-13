@@ -1,0 +1,60 @@
+#include <iostream>
+#include <vector>
+#include <queue>
+#include <string>
+using namespace std;
+
+int dy[4] = { -1, 1, 0, 0 };
+int dx[4] = { 0, 0, -1, 1 };
+int map[5][5];
+
+struct Point
+{
+	int y;
+	int x;
+};
+
+void bfs(Point st)
+{
+	queue<Point> q;
+	q.push(st);
+	map[st.y][st.x] = 1;
+
+	while (!q.empty())
+	{
+		Point now = q.front();
+		q.pop();
+
+		for (int i = 0; i < 4; i++)
+		{
+			Point next;
+			next.y = now.y + dy[i];
+			next.x = now.x + dx[i];
+
+			if (next.y < 0 or next.x < 0 or next.y >= 5 or next.x >= 5) continue;
+			if (map[next.y][next.x] == 0)
+			{
+				map[next.y][next.x] = map[now.y][now.x] + 1;
+				q.push(next);
+			}
+		}
+	}
+}
+
+
+int main() {
+
+	Point st;
+	cin >> st.y >> st.x;
+
+	bfs(st);
+
+	for (int i = 0; i < 5; i++)
+	{
+		for (int j = 0; j < 5; j++)
+		{
+			cout << map[i][j] << " ";
+		}
+		cout << endl;
+	}
+}
