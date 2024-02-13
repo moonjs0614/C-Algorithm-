@@ -1,0 +1,46 @@
+//중복된 수가 없는 배열arr 가 입력으로 주어집니다. 주어진 배열에서 세 수를 조합하여 더했을 때 특정한 값 K 가 되는 경우가 몇 개 있는지 구해주세요.
+//즉,  arr[a] + arr[b] + arr[c] == K ( a < b < c ) 를 만족하는 경우의 수를 구해주시면 됩니다.
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+const int MAX_VALUE = 100000;
+const int MAX_N = 5000;
+const int MAX_K = 300000;
+
+int dat[MAX_VALUE + 1] = {0};  // DAT 배열 초기화
+
+int main() {
+    int N, K;
+    std::cin >> N >> K;
+
+    std::vector<int> arr(N);
+
+    for (int i = 0; i < N; ++i) {
+        std::cin >> arr[i];
+    }
+
+    int result = 0;
+
+    // 세 수를 조합하여 더한 경우의 수 계산
+    for (int i = 0; i < N - 2; ++i) {
+        // dat 배열 초기화
+        std::fill(dat, dat + MAX_VALUE + 1, 0);
+
+        for (int j = i + 1; j < N; ++j) {
+            int remainingValue = K - (arr[i] + arr[j]);
+
+            // DAT에서 나머지 값이 있는지 확인
+            if (remainingValue >= 0 && remainingValue <= MAX_VALUE && dat[remainingValue] == 1) {
+                result++;
+            }
+
+            dat[arr[j]] = 1;  // 현재 j 값으로 dat 배열 업데이트
+        }
+    }
+
+    std::cout << result << std::endl;
+
+    return 0;
+}
