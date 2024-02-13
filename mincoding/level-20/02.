@@ -1,0 +1,28 @@
+//숫자 n을 입력 받으세요.
+//숫자 n부터 0까지 Count down 했다가
+//다시 돌아오는 수를 출력 하시면 됩니다.
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+void func(int num)
+{
+  if (num == 0)
+  {
+    cout << num << " ";
+    return;
+  }
+  cout << num << " ";
+  func(num - 1);
+  cout << num << " ";
+}
+
+int main(){
+  
+  int num;
+  cin >> num;
+  
+  func(num);
+  
+  return 0;}
