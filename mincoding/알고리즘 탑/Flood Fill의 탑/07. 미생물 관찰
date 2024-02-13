@@ -1,0 +1,132 @@
+//미생물학자 파스퇴르씨는 미지의 미생물들이 있는 토양 샘플을 채집하였습니다.
+//현미경으로 본 결과 총 2 종류의 미생물이 존재한다는 것을 알게 되었습니다.
+//각각 A 타입 , B 타입의 미생물이라 명명하였고 , 토양 샘플에서 개체 수를 파악하려 합니다.
+
+//A 타입, B 타입의 미생물이 `각각 몇개의 개체가 존재하는지 출력하고,
+//모든 미생물 중에서 `가장 큰 개체의 크기를 출력하는 프로그램을 작성해 주세요.
+
+#include <iostream>
+#include <queue>
+#include <vector>
+#include <string>
+using namespace std;
+
+int N, M;
+int dy[4] = { -1, 1, 0, 0 };
+int dx[4] = { 0, 0, -1, 1 };
+char map[200][200];
+int a = 0;
+int b = 0;
+int maxVal = 0;
+
+struct Point
+{
+	int y;
+	int x;
+};
+
+int bfs_a(Point st)
+{
+	int size = 0;
+	queue<Point> q;
+	q.push(st);
+	map[st.y][st.x] = 'a';
+	 
+	while (!q.empty())
+	{
+		Point now = q.front();
+		q.pop();
+		size++;
+
+		for (int i = 0; i < 4; i++)
+		{
+			Point next;
+			next.y = now.y + dy[i];
+			next.x = now.x + dx[i];
+
+			if (next.y < 0 or next.x < 0 or next.y >= N or next.x >= M) continue;
+			if (map[next.y][next.x] == 'A')
+			{
+				map[next.y][next.x] = 'a';
+				q.push(next);
+			}
+		}
+	}
+	return size;
+}
+
+int bfs_b(Point st)
+{
+	int size = 0;
+	queue<Point> q;
+	q.push(st);
+	map[st.y][st.x] = 'b';
+
+	while (!q.empty())
+	{
+		Point now = q.front();
+		q.pop();
+		size++;
+
+		for (int i = 0; i < 4; i++)
+		{
+			Point next;
+			next.y = now.y + dy[i];
+			next.x = now.x + dx[i];
+
+			if (next.y < 0 or next.x < 0 or next.y >= N or next.x >= M) continue;
+			if (map[next.y][next.x] == 'B')
+			{
+				map[next.y][next.x] = 'b';
+				q.push(next);
+			}
+		}
+	}return size;
+}
+
+int main() {
+
+	cin >> N >> M;
+
+	for (int i = 0; i < N; i++)
+	{
+		for (int j = 0; j < M; j++)
+		{
+			cin >> map[i][j];
+		}
+	}
+
+	for (int i = 0; i < N; i++)
+	{
+		for (int j = 0; j < M; j++)
+		{
+			if (map[i][j] == 'A')
+			{
+				Point st = { 0, };
+				st.y = i;
+				st.x = j;
+				a++;
+				int x = bfs_a(st);
+				if (x > maxVal)
+				{
+					maxVal = x;
+				}
+			}
+			else if (map[i][j] == 'B')
+			{
+				Point st = { 0, };
+				st.y = i;
+				st.x = j;
+				b++;
+				int y = bfs_b(st);
+				if (y > maxVal)
+				{
+					maxVal = y;
+				}
+			}
+		}
+	}
+
+	cout << a << " " << b << endl;
+	cout << maxVal;
+}
