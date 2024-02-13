@@ -1,0 +1,53 @@
+//네 명의 친구들의 이름을 입력 받아 주세요. (사람당 한글자씩, 총 4글자)
+//그리고 이 친구들 중 1등, 2등, 3등을 뽑아 선물을 주려고 합니다.
+//한 사람은 하나의 선물만 받을 수 있습니다.
+//선물을 줄 수 있는 경우를 모두 출력해주세요.
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <iostream>
+#include <string>
+using namespace std;
+
+string str;
+int visited[100];
+char path[3];
+
+void printpath(int level)
+{
+	for (int i = 0; i < level; i++)
+	{
+		cout << path[i];
+	}
+	cout << endl;
+}
+
+
+void func(int level)
+{
+	if (level == 3)
+	{
+		printpath(level);
+		return;
+	}
+	for (int i = 0; i < 4; i++)
+	{
+		if (visited[str[i]] == 1)
+		{
+			continue;
+		}
+		visited[str[i]] = 1;
+		path[level] = str[i];
+		func(level + 1);
+		visited[str[i]] = 0;
+		path[level] = '\0';
+	}
+}
+
+int main() {
+
+	//freopen("test_input.txt", "r", stdin);
+
+	cin >> str;
+
+	func(0);
+}
