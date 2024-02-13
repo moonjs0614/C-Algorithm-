@@ -1,0 +1,29 @@
+//양의 정수 N이 주어지면 N의 모든 자릿수를 합한 값을 출력하는 프로그램을 재귀 함수를 활용하여 작성하시오.
+
+#include <iostream>
+using namespace std;
+
+int N = 10;
+int k;
+int sum;
+
+void devide(int num)
+{
+    if (num == 0)
+    {
+        return;
+    }
+
+    sum += num % 10;
+    devide(num / 10);
+}
+
+int main() {
+    int num;
+    cin >> num;
+    devide(num);
+
+    cout << sum;
+
+    return 0;
+}
