@@ -1,0 +1,23 @@
+//char 배열 대신 string class를 사용하면
+//손쉽게 문자열을 다룰 수 있습니다.
+//문자열을 입력 받고
+//1. 본래 순서대로 출력 후
+//2. 역순으로 출력 해 주세요.
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+string a;
+
+int main()
+{
+  cin >> a;
+  int len = a.length();
+  cout << a << endl;
+  
+  for (int i = len-1; i > -1; i--)
+  {
+    cout << a[i];
+  }
+}
