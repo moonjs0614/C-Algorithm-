@@ -1,0 +1,21 @@
+//문자 변수 a,b,c를 만들고 문자 3개를 입력 받으세요.
+//그리고 char pointer형 변수 3개를 만들고 각각 문자 변수들을가리켜주세요.
+//pointer의 능력을 사용해서 각 문자의 다음 알파벳을 출력 해주세요.
+
+#include <iostream>
+using namespace std;
+
+int main(){
+  
+  char a, b, c;
+  char *x = &a;
+  char *y = &b;
+  char *z = &c;
+  cin >> a >> b >> c;
+  
+  *x += 1;
+  *y += 1;
+  *z += 1;
+  
+  cout << a << " " << b << " " << c;
+  return 0;}
