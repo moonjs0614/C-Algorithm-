@@ -1,0 +1,35 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+string str;
+
+void func(int idx)
+{
+  string before[5] = {"KFC", "MC", "BICMAC", "SHACK", "SONY"};  // 쉼표 추가
+  string after[5] = {"#BBQ#", "#BBQ#", "#MACBOOK#", "#SHOCK#", "#NONY#"};
+  
+  string sentence = str;
+  string find_str = before[idx];
+  string replace_str = after[idx];
+  
+  size_t pos = sentence.find(find_str);
+  while (pos != string::npos) {
+    sentence.replace(pos, find_str.length(), replace_str);
+    pos = sentence.find(find_str, pos + replace_str.length());
+  }
+  
+  str = sentence;
+}
+
+int main(){
+  
+  cin >> str;
+  
+  for (int i = 0; i < 5; i++)
+  {
+    func(i);
+  }
+  
+  cout << str;
+}
