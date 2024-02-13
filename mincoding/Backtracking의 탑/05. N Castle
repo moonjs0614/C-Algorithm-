@@ -1,0 +1,35 @@
+//N x N 체스판에 N 개의 캐슬을 배치시켜 나올 수 있는 경우의 수를 출력해주세요
+//단, 배치할때 서로 공격하지 않아야합니다. 만약 Castle을 배치해서 이동할 수 있는 곳에 또 다른 Castle이 있다면, 이는 공격가능한걸로 간주합니다.
+
+#include <iostream>
+using namespace std;
+
+int N;
+int visited[10];
+int cnt;
+
+void func(int row)
+{
+	if (row == N)
+	{
+		cnt++;
+		return;
+	}
+
+	for (int col = 0; col < N; col++)
+	{
+		if (visited[col] == 1)
+		{
+			continue;
+		}
+		visited[col] = 1;
+		func(row + 1);
+		visited[col] = 0;
+	}
+}
+
+int main() {
+	cin >> N;
+	func(0);
+	cout << cnt;
+}
