@@ -1,0 +1,67 @@
+//현준이가 설치한 폭죽은 1초당 한번씩 불꽃이 사방으로 퍼져나갑니다.
+//폭죽이 한번 터질 때 마다 8방향 으로 터져 나가고, 연달아 8 방향 (⬅⬉⬆⬈➡⬊⬇⬋)으로 또 터집니다.
+//만약 0초에 폭죽이 1개 있다면,
+//1초에는 폭죽이 8 방향으로 불꽃으로 터집니다.
+//2초에는 8개 불꽃이 각각 8 방향으로, 총 64개 방향으로 퍼집니다.
+//3초에는 64개 불꽃은 64 x 8 = 512 방향으로 퍼집니다.
+//먼저 4 x 5 사이즈의 맵을 입력 받으세요.
+//0은 빈 하늘을, 1은 폭죽을 의미합니다.
+
+#include <iostream>
+#include <vector>
+#include <queue>
+using namespace std;
+
+int dy[8] = { 0, -1, -1, -1, 0, 1, 1, 1 };
+int dx[8] = { -1, -1, 0, 1, 1, 1, 0, -1 };
+int sky[4][5];
+
+struct Point
+{
+	int y;
+	int x;
+};
+
+queue<Point> q;
+int cnt;
+
+
+int main() {
+
+	for (int i = 0; i < 4; i++)
+	{
+		for (int j = 0; j < 5; j++)
+		{
+			cin >> sky[i][j];
+			if (sky[i][j] == 1)
+			{
+				Point bomb;
+				bomb.y = i;
+				bomb.x = j;
+				q.push(bomb);
+			}
+		}
+	}
+
+	while (!q.empty())
+	{
+		Point now = q.front();
+		q.pop();
+
+		for (int i = 0; i < 8; i++)
+		{
+			Point next = { 0 };
+			next.y = now.y + dy[i];
+			next.x = now.x + dx[i];
+
+			if (next.y < 0 or next.x < 0 or next.y >= 4 or next.x >= 5) continue;
+			if (sky[next.y][next.x] != 0) continue;
+
+			sky[next.y][next.x] = sky[now.y][now.x] + 1;
+			cnt = sky[next.y][next.x];
+			//sky[next.y][next.x] = 1;
+			q.push(next);
+		}
+	}
+	cout << cnt-1;
+}
