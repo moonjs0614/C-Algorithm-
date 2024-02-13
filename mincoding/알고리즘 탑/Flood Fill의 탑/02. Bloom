@@ -1,0 +1,70 @@
+//2차원 배열 형태의 화단에 씨앗이 심어있습니다.
+//이 씨앗은 심어진 후 다음날 즉시 꽃이 피고, 상,하,좌,우로 씨앗을 퍼트립니다.
+//1일 차를 시작으로, 화단에 두 개의 씨앗을 심습니다.
+//그리고 며칠이 지나야 화단 전체에 꽃과 씨앗이 채워지는지 구해주는 프로그램을 만들어 주세요.
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <iostream>
+#include <queue>
+using namespace std;
+
+struct Point
+{
+	int y;
+	int x;
+};
+
+int dy[4] = { -1, 1, 0, 0 };
+int dx[4] = { 0, 0, -1, 1 };
+
+int map[100][100];
+int height, width;
+
+
+int bfs(Point first, Point second)
+{
+	int minVal = 0;
+	queue<Point> q;
+	map[first.y][first.x] = 1;
+	map[second.y][second.x] = 1;
+	q.push(first);
+	q.push(second);
+
+	while (!q.empty())
+	{
+		Point now = q.front();
+		q.pop();
+
+		for (int i = 0; i < 4; i++)
+		{
+			Point next = { 0 };
+			next.y = now.y + dy[i];
+			next.x = now.x + dx[i];
+
+			if (next.y < 0 or next.x < 0 or next.y >= height or next.x >= width) continue;
+			if (map[next.y][next.x] != 0) continue;
+
+			map[next.y][next.x] = map[now.y][now.x] + 1;
+			minVal = map[next.y][next.x];
+			q.push(next);
+		}
+	}
+
+	return minVal;
+}
+
+int main() {
+
+	//freopen("sample_input.txt", "r", stdin);
+	Point first = { 0 };
+	Point second = { 0 };
+	cin >> height >> width;
+	cin >> first.y >> first.x;
+	cin >> second.y >> second.x;
+
+	int minVal = bfs(first, second);
+	
+	cout << minVal;
+
+	return 0;
+}
