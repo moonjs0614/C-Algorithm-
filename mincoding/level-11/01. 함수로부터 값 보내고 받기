@@ -1,0 +1,28 @@
+//[input 함수] 숫자 1개를 입력받고 그 숫자를 return하는 함수입니다.
+//[main 함수] input함수를 3번 호출하여 숫자 3개를 입력받아주세요. 그리고 그 숫자 3개를 calc함수로 값을 보내주세요
+//[calc 함수] 숫자 3개를 받고, 세 숫자의 총 합을 출력 해주세요.
+
+#include <iostream>
+using namespace std;
+
+int Input()
+{
+  int a;
+  cin >> a;
+  return a;
+}
+
+int Calc(int a, int b, int c)
+{
+  return a + b + c;
+}
+
+int main()
+{
+  int a = Input();
+  int b = Input();
+  int c = Input();
+  
+  cout << Calc(a, b, c);
+  
+  return 0;}
