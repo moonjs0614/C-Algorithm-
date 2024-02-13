@@ -1,0 +1,47 @@
+//숫자 두개를 입력받아 합한 값을 리턴하는 함수와, 숫자 두개를 입력받아 곱한 값을 리턴하는 함수를 만들어주세요.
+//두 함수를 호출하고 리턴 받은 두개의 값을 비교해주세요.
+
+//[main 함수]
+//GOP 함수와 SUM 함수를 호출 해 주세요.
+//리턴 받은 값 두개를 비교하여, GOP 함수의 return 값이 크면 "GOP>SUM" 을 출력 해주세요.
+//반대로, SUM 함수의 return 값이 크면 "GOP<SUM" 을 출력 해주세요.
+//만일, GOP 함수와 SUM 함수의 return 값이 같다면 "GOP==SUM" 을 출력 해주세요.
+
+//[GOP 함수] 숫자 2개를 입력 받고 곱을 return 해 주세요.
+//[SUM 함수] 숫자 2개를 입력 받고 합을 return 해 주세요.
+
+#include <iostream>
+
+int x, y;
+
+int GOP()
+{
+  std::cin >> x >> y;
+  return x * y;
+}
+
+int SUM()
+{
+  std::cin >> x >> y;
+  return x + y;
+}
+
+int main(){
+  
+  int a = GOP();
+  int b = SUM();
+  
+  if (a > b)
+  {
+    std::cout << "GOP>SUM";
+  }
+  else if (a < b)
+  {
+    std::cout << "GOP<SUM";
+  }
+  else
+  {
+    std::cout << "GOP==SUM";
+  }
+  
+  return 0;}
