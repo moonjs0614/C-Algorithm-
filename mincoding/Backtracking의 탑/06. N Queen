@@ -1,0 +1,42 @@
+//N x N 크기의 체스판에서, N개의 Queen을 배치하고자 합니다.
+//N개의 Queen 을 서로 공격할 수 없는 곳에 배치해야 합니다.
+//만약 Queen이 이동할 수 있는 곳에 다른 Queen이 있다면, 이는 공격 가능한 것으로 간주합니다.
+
+#include <iostream>
+using namespace std;
+
+int N;
+int visited[100];
+int LURD[100];
+int LDRU[100];
+int cnt;
+
+void func(int row)
+{
+	if (row == N)
+	{
+		cnt++;
+		return;
+	}
+
+	for (int col = 0; col < N; col++)
+	{
+		if (visited[col] == 1 or LURD[row - col + N - 1] == 1 or LDRU[row + col] == 1)
+		{
+			continue;
+		}
+		visited[col] = 1;
+		LURD[row - col + N - 1] = 1;
+		LDRU[row + col] = 1;
+		func(row + 1);
+		visited[col] = 0;
+		LURD[row - col + N - 1] = 0;
+		LDRU[row + col] = 0;
+	}
+}
+
+int main() {
+	cin >> N;
+	func(0);
+	cout << cnt;
+}
