@@ -1,0 +1,46 @@
+//회사 동기인 철이가 회사에 더 이상 회사에 나오지 않습니다. 철이에게 연락 해 보니, 철이는 투자 프로그램을 제작했고 약 6,992억원 정도 수익이 발생했다고 합니다.
+//그 노하우는 종목코드가 들어가 있는 뉴스기사가 보이면, 즉시 매수를 하는 것이었습니다.
+//종목코드란, 주식을 거래할 수 있는 종목의 고유 번호를 뜻합니다.
+//그 노하우를 듣게 된 우리는 철이와 같은 파싱 프로그램을 제작하려고 합니다.
+//n개의 뉴스 제목을 입력받아주세요.
+//각 뉴스제목을 파싱하여, 종목코드만 출력 해 주세요.
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+int n;
+
+int main() {
+  
+  cin >> n;
+  string arr[n];
+  
+  for (int i = 0; i < n; i++) {
+    cin >> arr[i];
+  }
+  
+  for (int i = 0; i < n; i++) {
+    size_t startPos = arr[i].find('[');
+    while (startPos != string::npos)
+    {
+      size_t endPos = arr[i].find(']', startPos);
+      if (endPos != string::npos)
+      {
+        string sub = arr[i].substr(startPos, 7);
+        
+        if (sub.length() == 7 && sub[6] == ']')
+        {
+        	cout << sub << endl;
+        }
+        startPos = arr[i].find('[', endPos);
+      }
+      else
+      {
+        break;
+      }
+    }
+  }
+  
+  return 0;
+}
