@@ -1,0 +1,19 @@
+//변수 a, b 에다가 숫자 2개를 입력 받아주세요.
+//그리고 a ~ b까지while을 사용해서 출력해 주세요.
+
+#include <iostream>
+using namespace std;
+
+int main(){
+  
+  int a, b;
+  cin >> a >> b;
+  int i = a;
+  
+  while (i <= b)
+  {
+    cout << i << " ";
+    i++;
+  }
+  
+  return 0;}
