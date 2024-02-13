@@ -1,0 +1,66 @@
+//민철이는 1번 지역에서 N번 지역에 있는 회사로 매일 출근합니다.
+//현재 직장을 오래 다녔던 민철이는 각 지역의 대중교통이 어떻게 연결되어 있는지 전부 알고 있기에 어느 상황에서든 최소로 환승하여 출근합니다.
+//예를 들어, 지역을 원으로 나타내고 각 지역끼리 대중교통으로 이동하는 관계를 선으로 이어 표현한 아래와 같은 교통 지도가 있습니다.
+//출발지역은 1번이고, 도착지역인  N번 지역은 8번 입니다.
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <iostream>
+#include <vector>
+#include <queue>
+using namespace std;
+
+int N, M;
+vector<int> v[11];
+int dist[11];
+int T;
+int visited[11];
+
+void bfs(int st)
+{
+	queue<int> q;
+	visited[st] = 1;
+	q.push(st);
+
+	while (!q.empty())
+	{
+		int now = q.front();
+		q.pop();
+
+		for (int i = 0; i < v[now].size(); i++)
+		{
+			int next = v[now][i];
+			
+			if (visited[next] == 1)continue;
+			if (next == T)continue;
+
+			dist[next] = dist[now] + 1;
+			visited[next] = 1;
+			q.push(next);
+		}
+	}
+}
+
+int main() {
+
+	//freopen("sample_input.txt", "r", stdin);
+	cin >> N >> M;
+	int from, to;
+	for (int i = 0; i < M; i++)
+	{
+		cin >> from >> to;
+		v[from].push_back(to);
+		v[to].push_back(from);
+	}
+	cin >> T;
+
+	bfs(1);
+
+	if (dist[N])
+	{
+		cout << dist[N];
+	}
+	else
+	{
+		cout << -1;
+	}
+}
