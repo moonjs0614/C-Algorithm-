@@ -1,0 +1,61 @@
+#include <iostream>
+#include <queue>
+#include <vector>
+using namespace std;
+
+int K;
+int visited[6];
+
+int arr[6][6] = {
+	{0, 0, 0, 0, 1, 0},
+	{1, 0, 1, 0, 0, 1},
+	{1, 0, 0, 1, 0, 0},
+	{1, 1, 0, 0, 0, 0},
+	{0, 1, 0, 1, 0, 1},
+	{0, 0, 1, 1, 0, 0}
+};
+
+int answer[6];
+int idx;
+
+void bfs(int st)
+{
+	queue<int> q;
+	q.push(st);
+	visited[st] = 1;
+
+	while (!q.empty())
+	{
+		int now = q.front();
+		q.pop();
+		visited[now] = 1;
+
+		//cout << now << " ";
+		answer[idx] = now;
+		idx++;
+
+		for (int i = 0; i < 6; i++)
+		{
+			int next = arr[now][i];
+			if (visited[i] == 1)continue;
+
+			if (next == 1)
+			{
+				q.push(i);
+			}
+		}
+	}
+
+}
+
+int main() {
+
+	cin >> K;
+
+	bfs(K);
+	
+	for (int i = 0; i < 6; i++)
+	{
+		cout << answer[i] << endl;
+	}
+}
