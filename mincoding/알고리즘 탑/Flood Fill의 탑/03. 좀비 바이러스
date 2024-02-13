@@ -1,0 +1,106 @@
+//좀비 바이러스가 창궐하여, 좀비가 된 시민들에게 백신을 투여하고자 합니다.
+//백신을 투여하면 3초 후 완치됩니다.
+//그리고 백신은 1초 마다 상하좌우로 인접한 좀비에게 퍼집니다.
+
+//한 명의 좀비에게 백신을 투여할 때,
+//백신으로 인해 치유가 끝날 때 까지 걸리는 시간과,
+//치료 받지 못한 좀비의 수를 출력해 주세요.
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <iostream>
+#include <queue>
+#include <string>
+
+using namespace std;
+
+struct Point
+{
+    int y;
+    int x;
+};
+
+int dy[4] = { -1,1,0,0 };
+int dx[4] = { 0,0, -1,1 };
+
+int height, width;
+
+string inputMAP[101];
+int MAP[101][101];
+
+int bfs(Point st)
+{
+    queue<Point> q;
+    MAP[st.y][st.x] = 3;
+    int second = 3;
+    q.push(st);
+    while (!q.empty())
+    {
+        Point now = q.front();
+        q.pop();
+        for (int i = 0; i < 4; i++)
+        {
+            Point next = { 0 };
+            next.y = now.y + dy[i];
+            next.x = now.x + dx[i];
+            if (next.y < 0 || next.x < 0 || next.y >= height || next.x >= width)
+            {
+                continue;
+            }
+            if (MAP[next.y][next.x] != 1)
+            {
+                continue;
+            }
+            MAP[next.y][next.x] = MAP[now.y][now.x] + 1;
+            second = MAP[next.y][next.x];
+            q.push(next);
+        }
+    }
+    return second;
+}
+
+int main()
+{
+    // freopen("sample_input.txt", "r", stdin);
+    cin >> width >> height;
+    string str;
+    for (int i = 0; i < height; i++)
+    {
+        cin >> str;
+        inputMAP[i] = str;
+    }
+    Point st = { 0 };
+    int y, x;
+    cin >> x >> y;
+    st.y = y - 1;
+    st.x = x - 1;
+
+    for (int i = 0; i < height; i++)
+    {
+        for (int j = 0; j < width; j++)
+        {
+            if (inputMAP[i][j] == '0')
+            {
+                continue;
+            }
+            MAP[i][j] = 1;
+        }
+    }
+
+    int second = bfs(st);
+
+    int cnt = 0;
+
+    for (int i = 0; i < height; i++)
+    {
+        for (int j = 0; j < width; j++)
+        {
+            if (MAP[i][j] == 0 || MAP[i][j] != 1)
+            {
+                continue;
+            }
+            cnt++;
+        }
+    }
+
+    cout << second << endl << cnt;
+}
