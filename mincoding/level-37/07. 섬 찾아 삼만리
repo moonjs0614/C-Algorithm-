@@ -1,0 +1,95 @@
+//주어지는 지도에 몇개의 섬이 존재하는지 찾아내야 합니다.
+//하나의 섬은상, 하, 좌, 우로 이어져있습니다.
+//지도의 크기와 정보를 입력 받고, 이어져 있는 섬의 총 개수를 출력하는 프로그램을 작성하시오.
+
+#include <iostream>
+#include <vector>
+#include <queue>
+#include <string>
+using namespace std;
+
+int dy[4] = { -1, 1, 0, 0 };
+int dx[4] = { 0, 0, -1, 1 };
+int map[100][100];
+int N, M;
+int cnt = 1;
+int maxVal = 0;
+
+struct Point
+{
+	int y;
+	int x;
+};
+
+void bfs(Point st, int cnt)
+{
+	queue<Point> q;
+	q.push(st);
+	map[st.y][st.x] = cnt;
+	
+	while (!q.empty())
+	{
+		Point now = q.front();
+		q.pop();
+
+		for (int i = 0; i < 4; i++)
+		{
+			Point next;
+			next.y = now.y + dy[i];
+			next.x = now.x + dx[i];
+
+			if (next.y < 0 or next.x < 0 or next.y >= N or next.x >= M) continue;
+			if (map[next.y][next.x] == 1)
+			{
+				map[next.y][next.x] = cnt;
+				q.push(next);
+			}
+		}
+	}
+}
+
+
+int main() {
+	cin >> N >> M;
+	for (int i = 0; i < N; i++)
+	{
+		for (int j = 0; j < M; j++)
+		{
+			cin >> map[i][j];
+		}
+	}
+
+	for (int i = 0; i < N; i++)
+	{
+		for (int j = 0; j < M; j++)
+		{
+			if (map[i][j] == 1)
+			{
+				Point st;
+				st.y = i;
+				st.x = j;
+				cnt++;
+				bfs(st, cnt);
+			}
+		}
+	}
+
+	for (int i = 0; i < N; i++)
+	{
+		for (int j = 0; j < M; j++)
+		{
+			if (map[i][j] > maxVal)
+			{
+				maxVal = map[i][j];
+			}
+		}
+	}
+	if (maxVal > 0)
+	{
+		cout << maxVal - 1;
+	}
+	else if (maxVal == 0)
+	{
+		cout << maxVal;
+	}
+}
