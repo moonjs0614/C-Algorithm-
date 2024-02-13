@@ -1,0 +1,23 @@
+//int형 변수 a, b 에 숫자 2개를 입력 받으세요.
+//그리고 int pointer형 변수 p, t를 선언하고 각각 a, b를 가리켜주세요.
+//이제 변수 a와 b를 SWAP 하려고 합니다.
+//*p와 *t를 이용해서 두 값을 SWAP 하고 변수 *p와 *t를 출력 해 주세요.
+
+#include <iostream>
+using namespace std;
+
+int a, b;
+
+int main(){
+  
+  cin >> a >> b;
+  
+  int *p = &a;
+  int *t = &b;
+  
+  int temp = a;
+  *p = b;
+  *t = temp;
+  
+  cout << a << " " << b;
+  return 0;}
