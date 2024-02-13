@@ -1,0 +1,27 @@
+//숫자 1개를 입력받고,
+//입력받은 Level 까지 재귀함수가 동작되도록 코딩해주세요
+//함수가 시작될 때 Level을 출력하면 됩니다.
+
+#include <iostream>
+using namespace std;
+
+int level;
+
+void func(int num)
+{
+  if (num == level)
+  {
+    cout << num;
+    return;
+  }
+  cout << num;
+  func(num + 1);
+  func(num + 1);
+}
+
+int main(){
+  cin >> level;
+  
+  func(0);
+  
+  return 0;}
