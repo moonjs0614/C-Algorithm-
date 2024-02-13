@@ -1,0 +1,38 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main(){
+  
+  string arr[4];
+  int ddd[4];
+  
+  for (int i = 0; i < 4; i++)
+  {
+    cin >> arr[i];
+  }
+  
+  for (int i = 0; i < 4; i++)
+  {
+    ddd[i] = arr[i].length();
+  }
+  
+  for (int i = 0; i < 3; i++)
+  {
+    for (int j = 0 ; j < 3-i; j++)
+    {
+      if (ddd[j] > ddd[j+1])
+      {
+        int temp = ddd[j];
+        ddd[j] = ddd[j+1];
+        ddd[j+1] = temp;
+      }
+    }
+  }
+  
+  for (int i = 0; i < 4; i++)
+  {
+    cout << ddd[i] << " ";
+  }
+  
+  return 0;}
