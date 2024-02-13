@@ -1,0 +1,66 @@
+//항상 0번 던전 부터 시작하며, 다음으로 이어지는 던전들은 판마다 랜덤으로 생성된다.
+//상위 던전에 입장하기 위해서는 게임에서 활용되는 재화인 "골드" 가 필요하며, 해당 상위던전의 전 단계의 던전을 클리어 해야만 입장할 수 있다.
+//코코는 모든 던전을 실패 없이 해결할 수 있는 상당한 실력자로 가정한다.
+//N개의 던전, M개의 던전간 연결된 경로, 그리고 코코가 가진 골드 재화의 양 K가 주어졌을 때, 코코가 도전할 수 있는 던전들의 번호를 오름차순으로 출력하는 프로그램을 작성하라.
+//던전 구조는 "트리 형태"를 가짐이 보장됩니다.
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <iostream>
+#include <queue>
+#include <vector>
+using namespace std;
+
+struct Edge
+{
+	int to;
+	int cost;
+};
+
+int N, M, K;
+vector<Edge> v[10];
+int dist[11];
+
+void bfs(int st)
+{
+	queue<int> q;
+	q.push(st);
+
+	while (!q.empty())
+	{
+		int now = q.front();
+		q.pop();
+
+		for (int i = 0; i < v[now].size(); i++)
+		{
+			int next = v[now][i].to;
+			int sum = dist[now] + v[now][i].cost;
+
+			if (sum > K)continue;
+
+			dist[next] = sum;
+			q.push(next);
+		}
+	}
+}
+
+int main()
+{
+	//freopen("sample_input.txt", "r", stdin);
+	cin >> N >> M >> K;
+	for (int i = 0; i < M; i++)
+	{
+		int from, to, cost;
+		cin >> from >> to >> cost;
+		v[from].push_back({ to, cost });
+	}
+
+	bfs(0);
+
+	for (int i = 0; i < 11; i++)
+	{
+		if (dist[i] != 0)
+		{
+			cout << i << " ";
+		}
+	}
+}
