@@ -1,0 +1,23 @@
+//1000 ~ 9999 사이의 숫자 1개를 입력받아주세요
+//(문장으로 입력받지 않고int형 변수에 입력 받습니다)
+//숫자를 쪼개서 각 자리 숫자를 4개의 변수에 옮겨담고, 각 자리를 따로 따로 출력 해 주세요
+
+#include <iostream>
+using namespace std;
+
+int main(){
+  
+  int x;
+  cin >> x;
+  
+  int a = x / 1000;
+  int b = (x % 1000) / 100;
+  int c = ((x % 1000) % 100) / 10;
+  int d = (((x % 1000) % 100) % 10);
+  
+  cout << "숫자" << a << endl;
+  cout << "숫자" << b << endl;
+  cout << "숫자" << c << endl;
+  cout << "숫자" << d << endl;
+  
+  return 0;}
