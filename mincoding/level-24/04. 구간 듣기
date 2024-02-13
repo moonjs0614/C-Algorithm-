@@ -1,0 +1,23 @@
+//라디오에 좋아하는 Pop이 나옵니다.
+//제가 좋아하는 특정 구간을 반복해서 듣고 싶습니다.
+//한 문자열(str)로 된 가사를 입력받고,
+//특정 구간 (a, b)과 반복 횟수(c)를 입력 받아주세요.
+//특정 구간을 반복하여 출력 해 주세요.
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+string str;
+int a, b, c;
+
+int main(){
+  
+  cin >> str;
+  cin >> a >> b >> c;
+  
+  for (int i = 0; i < c; i++)
+  {
+    cout << str.substr(a, b-a+1);
+  }
+}
