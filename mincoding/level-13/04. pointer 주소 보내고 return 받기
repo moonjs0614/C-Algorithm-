@@ -1,0 +1,32 @@
+//main함수에서 숫자2개를 입력받고, ABC 함수에 입력받은 값을 전달해 주세요.
+//ABC 함수는 전달받은 숫자 2개의 합과 곱을 계산 해 주는 함수입니다.
+
+//[main 함수]
+//숫자 두 개를 a, b 변수에 입력 받아주세요.
+//입력 받은 숫자들을 ABC 함수에 전달해 주세요.
+//ABC 함수가 구한 SUM 과 GOP 를 출력해 주세요.
+
+//[ABC 함수]
+//전달 받은 숫자로 SUM 과 GOP 가 가리키는 곳에 계산 값을 넣어주세요.
+//a + b, a x b 값을 넣어주세요.
+
+#include <iostream>
+using namespace std;
+
+void ABC(int a, int b, int *SUM, int *GOP)
+{
+  *SUM = a + b;
+  *GOP = a * b;
+}
+
+int main(){
+  
+  int a, b;
+  cin >> a >> b;
+  int SUM, GOP;
+  
+  ABC(a, b, &SUM, &GOP);
+    
+  cout << SUM << " " << GOP;
+  
+  return 0;}
