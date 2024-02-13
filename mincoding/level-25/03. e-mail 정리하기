@@ -1,0 +1,43 @@
+//메일 주소는
+//[이름] @ [도메인이름] [최상위도메인] 형태로 구성되어 있습니다.
+//각 Email 주소에서 [이름] 과 [도메인이름]만 추출 해 주세요.
+//그리고 추출된 문자열을 정리하여 다음과 같은 Format으로 출력 해 주세요.
+//[#이름] 도메인이름
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+string str;
+string name[10];
+string domain[10];
+int k;
+
+int main() {
+
+    cin >> str;
+    str += '|';
+
+    for (int i = 0; i < str.length(); i++)
+    {
+        if (str[i] == '\0')
+        {
+            break;
+        }
+        int idx = 0;
+        idx = str.find('@');
+        name[k] = str.substr(0, idx);
+        str.erase(0, idx + 1);
+        idx = str.find('|');
+        domain[k] = str.substr(0, idx);
+        str.erase(0, idx + 1);
+        idx = domain[k].find('.');
+        domain[k] = domain[k].substr(0, idx);
+        k++;
+    }
+
+    for (int i = 0; i < k; i++)
+    {
+        cout << "[#" << name[i] << "] " << domain[i] << endl;
+    }
+}
