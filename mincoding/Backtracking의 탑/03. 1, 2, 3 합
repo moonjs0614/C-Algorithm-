@@ -1,0 +1,33 @@
+//정수 n을 '1', '2', '3', '+' 만을 이용하여 표현하는 가짓수를 구하고자 합니다.
+
+#include <iostream>
+using namespace std;
+
+int func(int n) {
+    if (n == 0) {
+        return 1;
+    }
+
+    int cnt = 0;
+
+    if (n - 1 >= 0) {
+        cnt += func(n - 1);
+    }
+    if (n - 2 >= 0) {
+        cnt += func(n - 2);
+    }
+    if (n - 3 >= 0) {
+        cnt += func(n - 3);
+    }
+
+    return cnt;
+}
+
+int main() {
+    int n;
+  	cin >> n;
+    int result = func(n);
+    cout << result << endl;
+
+    return 0;
+}
