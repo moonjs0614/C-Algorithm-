@@ -1,0 +1,49 @@
+#include <iostream>
+#include <vector>
+#include <stack>
+
+using namespace std;
+
+void dfs(const vector<vector<int>>& adjacencyMatrix, int startNode) {
+    int n = adjacencyMatrix.size();
+    vector<bool> visited(n, false);
+    stack<int> s;
+
+    s.push(startNode);
+    while (!s.empty()) {
+        int currentNode = s.top();
+        s.pop();
+
+        if (!visited[currentNode]) {
+            cout << currentNode << " ";
+            visited[currentNode] = true;
+
+            for (int i = n - 1; i >= 0; --i) {
+                if (adjacencyMatrix[currentNode][i] == 1 && !visited[i]) {
+                    s.push(i);
+                }
+            }
+        }
+    }
+
+    cout << endl;
+}
+
+int main() {
+    // 첫 번째 줄에서 노드의 수 입력 받기
+    int n;
+    cin >> n;
+
+    // 인접 행렬 입력 받기
+    vector<vector<int>> adjacencyMatrix(n, vector<int>(n));
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < n; ++j) {
+            cin >> adjacencyMatrix[i][j];
+        }
+    }
+
+    // DFS 수행 및 결과 출력
+    dfs(adjacencyMatrix, 0);
+
+    return 0;
+}
