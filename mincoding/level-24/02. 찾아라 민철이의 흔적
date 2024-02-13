@@ -1,0 +1,36 @@
+//한국인들은 "누구 왔다감" 이라는 흔적을 남기는 것을 좋아합니다.
+//특히 민철이는 맛집을 방문할 때 마다 이 흔적을 남기는 것을 좋아합니다.
+//한 맛집을 찾아왔습니다.
+//기억이 잘 안나지만, 민철이가 방문한 적이 있었던 것 같습니다.
+//민철이가 방문한 적이 있었는지 O X 로 출력해주는 프로그램을 작성 해 주세요.
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main(){
+  
+  string name;
+  int n;
+  string arr[n];
+  
+  cin >> name;
+  cin >> n;
+  for (int i = 0; i < n; i++)
+  {
+    cin >> arr[i];
+  }
+  
+  for (int i = 0; i < n; i++)
+  {
+    int pos = arr[i].find(name);
+	if (pos == string::npos)
+	{
+		cout << "X" << endl;
+	}
+	else
+	{
+		cout << "O" << endl;
+	}
+  }
+}
