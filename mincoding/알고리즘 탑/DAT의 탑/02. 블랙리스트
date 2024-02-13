@@ -1,0 +1,63 @@
+//민철이는 아파트로 이사를 가려 합니다. 가격이 적게 나가는 아파트를 고르다보니 블랙리스트들이 있는 아파트로 이사를 갈 수 밖에 없게 되었습니다.
+//하지만, 운 좋게 블랙리스트가 적힌 종이를 입수하여 이사갈 아파트를 조사해보려 합니다.
+//블랙리스트 정보를 가지고 아파트에 일반 시민은 몇명이고 블랙리스트는 몇명인지 출력해주세요.
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+int h, w;
+int y, x;
+int DAT[100001];
+
+int main() {
+
+    cin >> h >> w;
+    int apt[h][w] = { 0, };
+
+    for (int i = 0; i < h; i++)
+    {
+        for (int j = 0; j < w; j++)
+        {
+            cin >> apt[i][j];
+        }
+    }
+
+    cin >> y >> x;
+    int black[y][x] = { 0, };
+
+    for (int i = 0; i < y; i++)
+    {
+        for (int j = 0; j < x; j++)
+        {
+            cin >> black[i][j];
+        }
+    }
+
+    for (int i = 0; i < h; i++)
+    {
+        for (int j = 0; j < w; j++)
+        {
+            DAT[apt[i][j]]++;
+        }
+    }
+
+    int cnt = 0;
+
+    for (int i = 0; i < y; i++)
+    {
+        for (int j = 0; j < x; j++)
+        {
+            if (DAT[black[i][j]] >= 1)
+            {
+                cnt += DAT[black[i][j]];
+             	DAT[black[i][j]] = 0;
+            }
+        }
+    }
+
+    cout << cnt << endl;
+    cout << h * w - cnt;
+
+    return 0;
+}
