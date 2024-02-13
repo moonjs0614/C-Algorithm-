@@ -1,0 +1,45 @@
+//A /B /C 세 종류의 초콜릿이 있습니다
+//이 중 n개의 초콜릿을 선택하려고 하는데
+//3개 연속으로 같은 알파벳의 초콜릿을 선택하면 안됩니다.
+//가져갈 n개의 초콜릿 개수를 입력받고, 나올수 있는 총 가짓수를 출력해주세요.
+//(재귀호출을 이용해서 풀어주세요)
+
+#include <iostream>
+using namespace std;
+
+int n;
+char path[20];
+int result = 0;
+
+void func(int now, int consecutive)
+{
+    if (now == n)
+    {
+        result++;
+        return;
+    }
+
+    for (char c = 'A'; c <= 'C'; c++)
+    {
+        if (now >= 2 && path[now - 1] == c && path[now - 2] == c)
+        {
+            // If three consecutive chocolates are the same, skip this choice
+            continue;
+        }
+
+        path[now] = c;
+        func(now + 1, consecutive + 1);
+        path[now] = 0;
+    }
+}
+
+int main()
+{
+    cin >> n;
+
+    func(0, 0);
+
+    cout << result << endl;
+
+    return 0;
+}
