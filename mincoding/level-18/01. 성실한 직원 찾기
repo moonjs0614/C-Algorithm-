@@ -1,0 +1,35 @@
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+int MAP[3][4] = {
+    {65000, 35, 42, 70},
+    {70, 35, 65000, 1300},
+    {65000, 30000, 38, 42}
+};
+int DAT[65536];
+
+int main(){
+  
+  for (int i = 0; i < 3; i++)
+  {
+    for (int j = 0; j < 4; j++)
+    {
+      DAT[MAP[i][j]]++;
+    }
+  }
+  int max = 0;
+  int maxIdx = 0;
+  
+  for (int i = 0; i < 65536; i++)
+  {
+    if (DAT[i] > max)
+    {
+      max = DAT[i];
+      maxIdx = i;
+    }
+  }
+  
+  cout << maxIdx;
+  
+  return 0;}
