@@ -1,0 +1,56 @@
+//시작 좌표에서 종료 좌표까지 최소 몇 회만에 갈 수 있는지 확인해주세요.
+//BFS 알고리즘을 사용하여 길을 찾아주세요.
+
+#include <iostream>
+#include <vector>
+#include <queue>
+using namespace std;
+
+int map[4][4] = { {0, 0, 0, 0}, {1, 1, 0, 1}, {0, 0, 0, 0}, {1, 0, 1, 0} };
+int dy[4] = { -1, 1, 0, 0 };
+int dx[4] = { 0, 0, -1, 1 };
+
+struct Point
+{
+	int y;
+	int x;
+};
+
+queue<Point> q;
+
+void bfs(Point st)
+{
+	q.push(st);
+	map[st.y][st.x] = 1;
+
+	while (!q.empty())
+	{
+		Point now = q.front();
+		q.pop();
+
+		for (int i = 0; i < 4; i++)
+		{
+			Point next;
+			next.y = now.y + dy[i];
+			next.x = now.x + dx[i];
+
+			if (next.y < 0 or next.x < 0 or next.y >= 4 or next.x >= 4) continue;
+			if (map[next.y][next.x] != 0) continue;
+
+			map[next.y][next.x] = map[now.y][now.x] + 1;
+			q.push(next);
+		}
+	}
+}
+
+int main() {
+
+	Point st, en;
+
+	cin >> st.y >> st.x;
+	cin >> en.y >> en.x;
+
+	bfs(st);
+
+	cout << map[en.y][en.x] - 1 << "회";
+}
