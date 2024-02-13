@@ -1,0 +1,48 @@
+//위와 같은 트리모양으로 재귀호출 프로그램을 만드려 합니다.
+//Level 3에 도착했을때 입력 받은 PATH가 몇번째로 만들어지는지 출력해주세요.
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+int N = 3;
+int K = 4;
+char path[5] = { '0', };
+string str;
+char abcd[4] = { 'A', 'B', 'C', 'D' };
+int cnt;
+
+void func(int now)
+{
+    if (now == N)
+    {
+        cnt++;
+        int flag = 0;
+        for (int i = 0; i < 3; i++)
+        {
+            if (path[i] == str[i])
+            {
+                flag++;
+            }
+        }
+        if (flag == 3)
+        {
+            cout << cnt << "번째";
+        }
+        return;
+    }
+
+    for (int i = 0; i < 4; i++)
+    {
+        path[now] = abcd[i];
+        func(now + 1);
+        path[now] = '\0';
+    }
+}
+
+int main() {
+
+ 	cin >> str;
+
+    func(0);
+}
