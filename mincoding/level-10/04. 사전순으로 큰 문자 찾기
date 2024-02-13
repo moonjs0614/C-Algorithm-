@@ -1,0 +1,24 @@
+//[main 함수] getChar 함수를 호출하고 getChar 함수에서 return 받은 값을 출력하세요.
+//[getChar 함수] 문자 2개를 입력 받아주세요. 두 문자를 비교하여 사전 순으로 더 큰 문자를 return 해주세요.
+
+#include <iostream>
+
+char a, b;
+
+char getChar()
+{
+  std::cin >> a >> b;
+  
+  if (a > b)
+  {
+    return a;
+  }
+  else
+    return b;
+}
+
+int main(){
+  
+  std::cout << getChar();
+  
+  return 0;}
