@@ -1,0 +1,30 @@
+//branch와Level을 입력받고재귀 함수가 호출되는 횟수를 counting해서 출력 해주세요.
+//예로들어 3 2 을 입력받으면 재귀함수는 총 13회 호출 됩니다.
+
+#include <iostream>
+
+int recursiveFunction(int branch, int level, int& count) {
+    if (level == 0) {
+        return 1;
+    }
+
+    int sum = 0;
+    for (int i = 0; i < branch; ++i) {
+        sum += recursiveFunction(branch, level - 1, count);
+        count++;
+    }
+
+    return sum;
+}
+
+int main() {
+    int branch, level;
+    int count = 1;
+
+    std::cin >> branch >> level;
+
+    int result = recursiveFunction(branch, level, count);
+    std::cout << count << std::endl;
+
+    return 0;
+}
