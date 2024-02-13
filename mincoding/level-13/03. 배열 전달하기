@@ -1,0 +1,22 @@
+//문자열을 입력 받고 배열을 함수로 전달하여, 배열의 길이를 구해주세요.
+//[main 함수] 한 문자열을 입력 받아주세요. stringLen 함수에 문자열이 저장된 배열을 전달해 주세요.
+//[stringLen 함수] 전달받은 문장의 길이를 구해 길이를 return 해 주세요.
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+int stringLen(string x)
+{
+	return x.length();
+}
+
+int main(){
+  
+  string str;
+  cin >> str;
+  int l = stringLen(str);
+  
+  cout << l << "글자";
+  
+  return 0;}
