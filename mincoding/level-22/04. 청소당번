@@ -1,0 +1,41 @@
+//1 ~ n 명의 친구가 4일치 청소당번 순서를 정하려고 합니다.
+//첫번째 친구가 4일치 모두 청소할 수도 있고, 다양한 경우가 발생합니다.
+//n명에 대해, 4일 동안의 청소스케줄을 모두 출력하는 프로그램을 작성해주세요.
+
+#include <iostream>
+using namespace std;
+
+int N;
+int K = 4;
+int path[400];
+int DAT[400];
+int arr[100];
+
+void func(int now)
+{
+    if (now == K)
+    {
+        for (int i = 0; i < K; i++)
+        {
+            cout << path[i];
+        }
+        cout << endl;
+        return;
+    }
+
+    for (int i = 0; i < N; i++)
+    {
+        path[now] = arr[i];
+        func(now + 1);
+        path[now] = 0;
+    }
+}
+
+int main() {
+    cin >> N;
+    for (int i = 0; i < N; i++)
+    {
+        arr[i] = i + 1;
+    }
+    func(0);
+}
