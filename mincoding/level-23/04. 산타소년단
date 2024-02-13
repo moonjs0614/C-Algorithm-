@@ -1,0 +1,49 @@
+//인기그룹 산타소년단이 있습니다.
+//맴버 다섯명의 이름은 각각 B T S K R 입니다.
+//이 그룹에서 n명을 순서대로 뽑아서 새로운 소규모 그룹을 만드려고 합니다.
+//첫 번째 뽑인사람이 리더이며,
+//두 번째 이후부터는 세컨드, 서드 등등 역할이 주어집니다.
+//맴버 중 방송국 국장 아들인S군은 새로운 소규모 팀에 들어있어야합니다.
+//n을 입력받으세요.
+//그리고 n명을 뽑아 맴버를 구성하려고 할 때,
+//나올 수 있는 순열의 수를 Counting해서 출력 해 주세요.
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+char member[5] = { 'B', 'T', 'K', 'R' };
+int n;
+int cnt;
+int visited[100];
+char path[4];
+
+void func(int now)
+{
+	if (now == (n-1))
+	{
+		cnt++;
+		return;
+	}
+
+	for (int i = 0; i < 4; i++)
+	{
+		if (visited[member[i]] == 1)
+		{
+			continue;
+		}
+		path[now] = member[i];
+		visited[member[i]] = 1;
+		func(now + 1);
+		path[now] = '\0';
+		visited[member[i]] = 0;
+	}
+}
+
+int main() {
+
+	cin >> n;
+	func(0);
+
+	cout << cnt*n;
+}
