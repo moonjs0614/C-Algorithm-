@@ -1,0 +1,139 @@
+//모의 소방훈련을 실시하는 날입니다.훈련 중에는 소화기를 찾아 불을 빨리 끄는 훈련이 있습니다.
+//소방꿈나무인 민철씨는 훈련에 참여하여 좋은 성적을 거두고 싶어합니다.
+//민철씨가 소화기를 가져와 불을 끌 때, 가장 빨리 끄기 위한 최소 이동 횟수를 구해주세요.
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <iostream>
+#include <queue>
+#include <vector>
+#include <string>
+#include <cstring>
+using namespace std;
+
+int N;
+char map[20][20];
+int visited[20][20];
+int Y, X;
+int a_count;
+int a_cnt;
+int b_cnt;
+int a_min = 21e8;
+int dy[4] = { -1, 1, 0, 0 };
+int dx[4] = { 0, 0, -1, 1 };
+
+struct Point
+{
+	int y;
+	int x;
+};
+
+Point a;
+
+int bfs_a(Point st)
+{
+	queue<Point> q;
+	q.push(st);
+
+	while (!q.empty())
+	{
+		Point now = q.front();
+		q.pop();
+		visited[st.y][st.x] = 1;
+
+		for (int i = 0; i < 4; i++)
+		{
+			Point next = { 0, };
+			next.y = now.y + dy[i];
+			next.x = now.x + dx[i];
+
+			if (next.y < 0 or next.x < 0 or next.y >= N or next.x >= N) continue;
+			if (map[next.y][next.x] == '#' or map[next.y][next.x] == '$') continue;
+			if (visited[next.y][next.x] != 0) continue;
+
+			if (map[next.y][next.x] == '_')
+			{
+				visited[next.y][next.x] = visited[now.y][now.x] + 1;
+			}
+
+			if (map[next.y][next.x] == 'A')
+			{
+				a.y = next.y;
+				a.x = next.x;
+				a_cnt = visited[now.y][now.x];
+
+				return a_cnt;
+			}
+			q.push(next);
+		}
+	}
+}
+
+int bfs_b(Point st)
+{
+	queue<Point> q;
+	q.push(st);
+
+	while (!q.empty())
+	{
+		Point now = q.front();
+		q.pop();
+		visited[st.y][st.x] = 1;
+
+		for (int i = 0; i < 4; i++)
+		{
+			Point next = { 0, };
+			next.y = now.y + dy[i];
+			next.x = now.x + dx[i];
+
+			if (next.y < 0 or next.x < 0 or next.y >= N or next.x >= N) continue;
+			if (map[next.y][next.x] == '#') continue;
+			if (visited[next.y][next.x] != 0) continue;
+
+			if (map[next.y][next.x] == '_')
+			{
+				visited[next.y][next.x] = visited[now.y][now.x] + 1;
+			}
+			if (map[next.y][next.x] == '$')
+			{
+				b_cnt = visited[now.y][now.x];
+				return b_cnt;
+			}
+			q.push(next);
+		}
+	}
+}
+
+int main() {
+	cin >> N;
+	for (int i = 0; i < N; i++)
+	{
+		for (int j = 0; j < N; j++)
+		{
+			cin >> map[i][j];
+			if (map[i][j] == 'A')
+			{
+				a_count++;
+			}
+		}
+	}
+	cin >> Y >> X;
+
+	Point st;
+	st.y = Y;
+	st.x = X;
+
+	for (int i = 0; i < a_count; i++)
+	{
+		memset(visited, 0, sizeof(visited));
+		a_cnt = bfs_a(st);
+		if (a_cnt < a_min)
+		{
+			a_min = a_cnt;
+		}
+	}
+	memset(visited, 0, sizeof(visited));
+
+	int k = bfs_b(a);
+
+	cout << k + a_min;
+}
