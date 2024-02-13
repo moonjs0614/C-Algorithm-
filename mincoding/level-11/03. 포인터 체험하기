@@ -1,0 +1,21 @@
+//아래 그림과 같이 int형(int type) a와 char형 gd 변수를 만들어 주세요.
+//그리고 숫자1개, 문자1개를 입력 받아 각각의 변수 안에 넣어주세요.
+//그 다음,int pointer형변수 p를 선언하고 변수 a를 가리키도록 해 주세요.
+//char pointer형변수 t를 선언하고 변수 gd를 가리키도록 해 주세요.
+
+#include <iostream>
+using namespace std;
+
+int a;
+char gd;
+
+int main(){
+  
+  cin >> a >> gd;
+  
+  int *p = &a;
+  char *t = &gd;
+  
+  cout << *p << " " << *t;
+  
+  return 0;}
