@@ -1,0 +1,57 @@
+//A ~ Z 까지모두 다른 알파벳으로 구성된 네 글자를 입력 받습니다.
+//입력받은 문자열에는 B, T 라는 글자가 포함 될 수도, 안 될수도 있습니다.
+//그런데 만약 B와 T가 모두 입력되었을 때,B와 T 글자는 서로 붙어있으면 안됩니다.
+//네 글자를 입력받고, B와 T글자가 서로 붙어있지 않은 총 경우의 수가 몇 가지인지 출력하세요.
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <iostream>
+#include <string>
+using namespace std;
+
+string str;
+string arr[256];
+string a[4];
+int cnt;
+int m;
+
+void func(int now)
+{
+	if (now == 4)
+	{
+		for (int i = 0; i < 4; i++)
+		{
+			arr[cnt] += a[i];
+		}
+		cnt++;
+		return;
+	}
+
+	for (int i = 0; i < 4; i++)
+	{
+		a[now] = str[i];
+		func(now + 1);
+	}
+}
+
+int main() {
+
+	cin >> str;
+
+	if (str.find('B') == -1 or str.find('T') == -1)
+	{
+		cout << 256;
+	}
+	else
+	{
+		func(0);
+
+		for (int i = 0; i < 256; i++)
+		{
+			if (arr[i].find("BT") != -1 or arr[i].find("TB") != -1)
+			{
+				m++;
+			}
+		}
+		cout << 256 - m;
+	}
+}
