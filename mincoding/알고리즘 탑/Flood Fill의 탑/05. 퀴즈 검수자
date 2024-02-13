@@ -1,0 +1,93 @@
+//민철이는 잡지를 출판하는 회사에 다니며 잡지에 실리는 퀴즈의 검수를 담당하고 있습니다.
+//매달 다양한 퀴즈들이 출제되는데, 다음 잡지에는 장기판을 이용한 퀴즈가 출제될 예정입니다.
+
+//퀴즈는 다음과 같은 규칙이 있습니다.
+//세로 H, 가로 W의 크기를 갖는 장기판 위에세로 R, 가로 C위치에 장기말이 놓여있습니다.
+//장기말 중붉은색 상은 항상수평이나 수직방향으로 1칸 움직인 다음 움직였던 방향의 대각선 방향으로 2칸을 더 움직이며 이 과정을1수 이동했다고 합니다.
+//다른 장기말로는여러 개의 붉은색 쫄과 파란색 차 1개가 있으며 이 말들은움직일 수 없습니다.
+//붉은색 상은1수 이동할 때, 이동 경로상의 말들을 모두뛰어 넘을 수 있습니다.
+//1수를 이동한최종 위치에붉은색 쫄이 있으면 그 위치로는갈 수 없으며, 파란색 차가 있으면 파란색 차를잡습니다.
+
+#include <iostream>
+#include <vector>
+#include <queue>
+#include <string>
+#include <cstring> // 추가: memset 함수를 사용하기 위한 헤더
+using namespace std;
+
+int dy[8] = { -3, -2, 2, 3, 3, 2, -2, -3 };
+int dx[8] = { 2, 3, 3, 2, -2, -3, -3, -2 };
+int map[100][100];
+int H, W;
+int N;
+
+vector<int> v[50];
+
+struct Point
+{
+    int y;
+    int x;
+};
+
+int bfs(Point st, Point target)
+{
+    queue<Point> q;
+    q.push(st);
+
+    // 추가: 방문 여부를 나타내는 배열 초기화
+    bool visited[100][100];
+    memset(visited, false, sizeof(visited));
+
+    while (!q.empty())
+    {
+        Point now = q.front();
+        q.pop();
+
+        for (int i = 0; i < 8; i++) // 수정: 방향 개수 8로 수정
+        {
+            Point next = { 0 };
+            next.y = now.y + dy[i];
+            next.x = now.x + dx[i];
+
+            if (next.y == st.y && next.x == st.x) continue;
+            if (next.y < 0 or next.x < 0 or next.y >= H or next.x >= W) continue;
+            if (map[next.y][next.x] == 1 || visited[next.y][next.x]) continue;
+
+            visited[next.y][next.x] = true; // 추가: 방문 여부 표시
+            map[next.y][next.x] = map[now.y][now.x] + 1;
+
+            if (next.y == target.y and next.x == target.x)
+            {
+                return map[next.y][next.x];
+            }
+            
+            q.push(next);
+        }
+    }
+
+    return -1; // 추가: 도달하지 못할 경우 -1 반환
+}
+
+
+int main() {
+
+    Point st = { 0 };
+    Point target = { 0 };
+
+    cin >> H >> W;
+    cin >> st.y >> st.x;
+    cin >> target.y >> target.x;
+    cin >> N;
+    for (int i = 0; i < N; i++)
+    {
+        int y, x;
+        cin >> y >> x;
+        map[y][x] = 1;
+    }
+
+    int cnt = bfs(st, target);
+
+    cout << cnt;
+
+    return 0;
+}
