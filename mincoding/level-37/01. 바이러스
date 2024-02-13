@@ -1,0 +1,71 @@
+//N x N 피부에 바이러스를 투여하려고 합니다.
+//바이러스는 두 곳에 투여되며, 상, 하, 좌, 우 네 방향으로 퍼지게 됩니다.
+
+//바이러스는 투여되자마자 1 부터 시작하며, 한 칸씩 퍼질때 마다 1씩 증가합니다.
+//바이러스의 최대 수치는 9 입니다.
+//바이러스가 모두 퍼지고 난 뒤 모습을 출력해 주세요.
+
+#include <iostream>
+#include <queue>
+using namespace std;
+
+int N;
+int map[100][100];
+int visited[100][100];
+int dy[4] = { -1, 1, 0, 0 };
+int dx[4] = { 0, 0, -1, 1 };
+
+struct Point
+{
+	int y;
+	int x;
+};
+
+void bfs(Point first, Point second)
+{
+	queue<Point> q;
+	visited[first.y][first.x] = 1;
+	visited[second.y][second.x] = 1;
+	q.push(first);
+	q.push(second);
+
+	while (!q.empty())
+	{
+		Point now = q.front();
+		q.pop();
+
+		for (int i = 0; i < 4; i++)
+		{
+			Point next;
+			next.y = now.y + dy[i];
+			next.x = now.x + dx[i];
+
+			if (next.y < 0 or next.x < 0 or next.y >= N or next.x >= N) continue;
+			if (visited[next.y][next.x] != 0) continue;
+			visited[next.y][next.x] = visited[now.y][now.x] + 1;
+
+			q.push(next);
+		}
+	}
+
+}
+
+int main() {
+
+	Point first = { 0 };
+	Point second = { 0 };
+	cin >> N;
+	
+	cin >> first.y >> first.x >> second.y >> second.x;
+
+	bfs(first, second);
+
+	for (int i = 0; i < N; i++)
+	{
+		for (int j = 0; j < N; j++)
+		{
+			cout << visited[i][j];
+		}
+		cout << endl;
+	}
+}
