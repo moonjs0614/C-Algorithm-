@@ -1,0 +1,47 @@
+//다섯 종류의 카드를 입력받습니다. ('0' ~ '9')
+//각각의 카드들은 다량으로 쌓여있습니다.
+//다섯 종류의 숫자 카드에서4장을뽑으려고 합니다.
+//뽑을 때마다 전에 뽑았던 카드번호와 간격이3이하로 차이나는
+//중복순열이 몇 가지인지 출력하세요.
+//재귀호출을 이용해서 풀어주세요
+
+#include <iostream>
+#include <string>
+#include <cstdlib>
+using namespace std;
+
+string arr;
+int path[4];
+int cnt;
+
+void func(int now)
+{
+    if (now == 4)
+    {
+        cnt++;
+        return;
+    }
+
+    for (int i = 0; i < 5; i++)
+    {
+        if (now > 0 && abs(path[now - 1] - (arr[i] - '0')) > 3)
+        {
+            // 현재 뽑은 카드와 전에 뽑았던 카드의 간격이 3 이하인 경우
+            continue;
+        }
+        path[now] = arr[i] - '0';
+        func(now + 1);
+        path[now] = 0;
+    }
+}
+
+int main()
+{
+    cin >> arr;
+
+    func(0);
+
+    cout << cnt;
+
+    return 0;
+}
