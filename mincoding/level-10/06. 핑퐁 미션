@@ -1,0 +1,30 @@
+//다음 세 가지 미션을 차례대로 수행 해 주세요.
+
+//[미션 1]
+//main 함수에서 숫자 한개를 변수 stone 에다가 입력 받습니다. (int stone, cin >> stone)
+//pingpong함수를 호출하면서 입력 받은 숫자 하나를 보냅니다.
+
+//[미션 2]
+//pingpong 함수에서는 tong 이라는 변수를 만들고, 이곳에 숫자를 전달 받습니다.
+//10 증가된 tong 값을 다시 main 함수로 return 합니다. (return tong + 10)
+
+//[미션 3]
+//main 함수에서는 pingpong 함수로 부터 전달받은 값을 변수 ret 에다가 저장합니다.
+//ret 값을 출력합니다.
+
+#include <iostream>
+
+int Pingpong(int tong)
+{
+  return tong + 10;
+}
+
+int main(){
+  
+  int stone;
+  std::cin >> stone;
+  
+  int ret = Pingpong(stone);
+  std::cout << ret;
+  
+  return 0;}
