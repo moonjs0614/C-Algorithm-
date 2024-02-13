@@ -1,0 +1,106 @@
+//고결한 문자열은 중복된 문자가 없는 문자열을 뜻합니다.
+//예를들어 ABCDEF은 고결한 문자열이며, ARQRA 는 고결하지 않은 문자열 입니다.
+//<  > 괄호를 포함한 문자열을 입력받습니다.
+//적어도 <  > 이 괄호 안에 있는 문자열은 반드시 고결한 문자열로 구성되어야 합니다.
+//부등호 괄호안의 문자열들이 모두 고결한 문자열로만 이루어진 문자열을 완벽한 문자열이라고 합니다.
+
+//예를들어 <A>AA<ABC>BBC<BC> 는 완벽한 문자열 입니다.
+//괄호 안에있는 문자열은 모두 고결한 문자열이기 때문입니다.
+//예를들어 BTS<BTC>K<KKK> 은 완벽한 문자열이 아닙니다.
+//괄호 안에있는 문자열 중, 고결하지 않은 문자열이 존재하기 때문입니다. (KKK)
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <iostream>
+#include <string>
+using namespace std;
+
+string arr[200];
+string str[100];
+int n;
+
+int func(int now)
+{
+    int flag = 0;
+    for (int i = 0; i < 10; i++)
+    {
+        int DAT[100] = { 0, };
+        if (flag == 1)
+        {
+            break;
+        }
+        if (arr[i] == "\0")
+        {
+            break;
+        }
+        for (int j = 0; j < 10; j++)
+        {
+            if (arr[i][j] == '\0')
+            {
+                break;
+            }
+            DAT[arr[i][j]]++;
+        }
+        
+        for (int i = 40; i < 91; i++)
+        {
+            if (DAT[i] > 1)
+            {
+                flag = 1;
+                break;
+            }
+        }
+    }
+    if (flag == 0)
+    {
+        return 1;
+    }
+    else if (flag == 1)
+    {
+        return 0;
+    }
+}
+
+void solution()
+{
+    for (int i = 0; i < n; i++)
+    {
+        int k = 0;
+        for (int j = 0; j < 200; j++)
+        {
+            if (str[i].find('<') == -1)
+            {
+                break;
+            }
+            int s_idx = str[i].find('<');
+            str[i].erase(0, s_idx);
+            int e_idx = str[i].find('>');
+            arr[k] = str[i].substr(1, e_idx - 1);
+            k++;
+            str[i].erase(0, e_idx+1);
+        }
+        int m = func(0);
+
+        if (m == 1)
+        {
+            cout << "O";
+        }
+        else if (m == 0)
+        {
+            cout << "X";
+        }
+    }
+}
+
+int main() {
+
+    //freopen("test_input.txt", "r", stdin);
+
+    cin >> n;
+
+    for (int i = 0; i < n; i++)
+    {
+        cin >> str[i];
+    }
+
+    solution();
+}
