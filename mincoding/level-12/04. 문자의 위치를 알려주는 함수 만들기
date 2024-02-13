@@ -1,0 +1,26 @@
+#include <iostream>
+using namespace std;
+
+char arr[8] = {'M', 'I', 'N', 'Q', 'U', 'E', 'S', 'T'};
+
+int Length(char x)
+{
+  for (int i = 0; i < 8; i++)
+  {
+    if (arr[i] == x)
+    {
+      return i;
+    }
+  }
+}
+
+int main(){
+  
+  char a, b, c;
+  cin >> a >> b >> c;
+  
+  cout << a << "=" << Length(a) << endl;
+  cout << b << "=" << Length(b) << endl;
+  cout << c << "=" << Length(c) << endl;
+  
+  return 0;}
