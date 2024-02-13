@@ -1,0 +1,22 @@
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+int cnt;
+
+void bbq()
+{
+  if (cnt == 5)
+  {
+    return;
+  }
+  
+  cnt++;
+  bbq();
+}
+
+int main(){
+  
+  bbq();
+  
+  return 0;}
