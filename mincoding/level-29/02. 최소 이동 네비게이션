@@ -1,0 +1,49 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int dfs(const vector<vector<int>>& graph, vector<bool>& visited, int currentNode, int targetNode, int moves) {
+    if (currentNode == targetNode) {
+        return moves;
+    }
+
+    visited[currentNode] = true;
+
+    for (int i = 0; i < graph.size(); ++i) {
+        if (graph[currentNode][i] == 1 && !visited[i]) {
+            int result = dfs(graph, visited, i, targetNode, moves + 1);
+            if (result > 0) {
+                return result;
+            }
+        }
+    }
+
+    return 0;
+}
+
+int main() {
+    // 노드 번호 A와 B 입력 받기
+    int A, B;
+    cin >> A >> B;
+
+    // 그래프 입력 받기
+    vector<vector<int>> graph = {
+        {0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 1, 0, 1, 1},
+        {0, 1, 0, 0, 1, 0, 0},
+        {0, 0, 0, 0, 0, 1, 0},
+        {0, 1, 0, 0, 0, 0, 0},
+        {0, 1, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0}
+    };
+
+    // 방문 여부를 저장하는 배열 초기화
+    vector<bool> visited(graph.size(), false);
+
+    // DFS 수행 및 최소 이동 횟수 출력
+    int result = dfs(graph, visited, A, B, 0);
+    cout << result << endl;
+
+    return 0;
+}
