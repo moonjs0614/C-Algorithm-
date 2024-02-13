@@ -1,0 +1,37 @@
+//cardlist 배열에 여러 종류의 카드가 있습니다.
+//1. 대문자 알파벳으로 구성된 카드 문장을 입력 합니다.문장의 길이는 최대 15입니다.
+//2. 입력한 카드에서 총 몇 종류의 카드가 있는지를 찾아 출력합니다.
+//* DAT (Direct Address Table)을 사용하여 풀어 주세요.
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+char cards[15];
+int DAT[100];
+
+void solution()
+{
+  for (int i = 0; i < 15; i++)
+  {
+    DAT[cards[i]] = 1;
+  }
+  int cnt = 0;
+  
+  for (int i = 60; i < 100; i++)
+  {
+    if (DAT[i] == 1)
+    {
+      cnt++;
+    }
+  }
+  
+  cout << cnt << "개";
+}
+
+int main(){
+  
+  cin >> cards;
+  solution();
+  
+  return 0;}
