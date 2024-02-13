@@ -1,0 +1,23 @@
+//level과 branch를 입력받고 그만큼 재귀호출을 해 주세요
+
+#include <iostream>
+using namespace std;
+
+int cnt = 2;
+
+void func(int num)
+{
+  if (cnt == 2)
+  {
+    return;
+  }
+  func(num + 1);
+  func(num + 1);
+  func(num + 1);
+}
+
+int main(){
+  
+  func(0);
+  
+  return 0;}
