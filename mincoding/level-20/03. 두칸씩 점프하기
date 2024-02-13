@@ -1,0 +1,30 @@
+//다음과 같이 동작하는 프로그램을 작성해 주세요
+//한번 재귀호출 될 때 마다, 2씩 증가됩니다.
+//그리고 3번 재귀 함수 진입 후, 리턴되면서 값을 출력 하면 됩니다.
+//만약 1을 입력받았다면,
+//출력 결과 : 7 5 3 1
+
+#include <iostream>
+using namespace std;
+
+int num;
+int cnt;
+
+void abc(int num)
+{
+  if (cnt == 4)
+  {
+    return;
+  }
+  cnt++;
+  abc(num + 2);
+  cout << num << " ";
+}
+
+int main(){
+  
+  cin >> num;
+  
+  abc(num);
+  
+  return 0;}
