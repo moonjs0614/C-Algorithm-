@@ -1,0 +1,40 @@
+//다음과 같은 구조로Level을 입력받고
+//입력받은 Level에도달했을 때 path를 출력해주세요.
+//(2 <= LEVEL <= 4)
+
+#include <iostream>
+using namespace std;
+
+int k;
+char path[5];
+char arr[4] = { 'B', 'G', 'T', 'K' };
+
+void func(int now)
+{
+    if (now >= k)
+    {
+        for (int i = 0; i < k; i++)
+        {
+            cout << path[i];
+        }
+        cout << endl;
+        return;
+    }
+
+    for (int i = 0; i < 4; i++)
+    {
+        path[now] = arr[i];
+
+        func(now + 1);
+
+        path[now] = 0;
+    }
+}
+
+
+int main() {
+
+    cin >> k;
+
+    func(0);
+}
